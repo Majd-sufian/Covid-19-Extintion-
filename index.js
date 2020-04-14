@@ -1,5 +1,24 @@
 window.onload = () => {
-  	getData() ;
+  	getData() 
+  	getUserCountry()
+}
+
+
+
+const getUserCountry = () => {
+	fetch('https://extreme-ip-lookup.com/json/')
+	.then( res => res.json())
+	.then(response => {
+		userCountry(response.country);
+	 })
+	 .catch((data, status) => {
+	    console.log('Request failed');
+	})
+}	 
+
+
+const userCountry = (user) => {
+	document.getElementById("user-country").innerHTML = user
 }
 
 var requestOptions = {
@@ -32,36 +51,42 @@ const getData = () => {
   })
 }
 
-function sortCountriesByCasesNumber(country){
-  	for (let j = 0; j < country.length - 1; j++) {
-	    let max_obj = country[j];
+function sortCountriesByCasesNumber(countries){
+  	for (let j = 0; j < countries.length - 1; j++) {
+	    let max_obj = countries[j];
 	    let max_location = j;
-	        for (let i = j; i < country.length; i++) {
+	        for (let i = j; i < countries.length; i++) {
 	            // if you want to get elements form smaller to bigger just write (< instead >)
-	            if (country[i].latest_data.confirmed > max_obj.latest_data.confirmed) {
-	                max_obj = country[i]
+	            if (countries[i].latest_data.confirmed > max_obj.latest_data.confirmed) {
+	                max_obj = countries[i]
 	                max_location = i
 	       	     }
 	        }
-	    country[max_location] = country[j]
-	    country[j] = max_obj
+	    countries[max_location] = countries[j]
+	    countries[j] = max_obj
 		}
-	var firstCountry = country[0].latest_data.confirmed
-	var secondCountry = country[1].latest_data.confirmed
-	var thirdCountry = country[2].latest_data.confirmed
-	var fourthCountry = country[3].latest_data.confirmed
-
-	// fillHtmlCountries(firstCountry, secondCountry, thirdCountry, fourthCountry)
+	var firstCountry = countries[0]
+	var secondCountry = countries[1]
+	var thirdCountry = countries[2]
+	var fourthCountry = countries[3]
+	var userLocationCountry = document.getElementById("user-country").innerHTML
+	const foundCountry = countries.find(country => country.name === userLocationCountry)
+	const userCountryPostion = countries.indexOf(foundCountry)
+	var userCountry = [userCountryPostion, foundCountry]
+ 
+	fillHtmlCountries(firstCountry, secondCountry, thirdCountry, fourthCountry, userCountry)
 }
 
-// const fillHtmlCountries = (firstCountry, secondCountry, thirdCountry, fourthCountry) => {
-// 	HTML = `
-// 		<p class="countries">1- USA: <span style="color: #F47027">${firstCountry}</span> Cases</p>
-// 		<p class="countries">2- Spain: <span style="color: #F47027">${secondCountry}</span> Cases</p>
-// 		<p class="countries">3- Italy: <span style="color: #F47027">${thirdCountry}</span> Cases</p>
-// 		<p class="countries">43- France: <span style="color: #F47027">${fourthCountry}</span> Cases</p>
-// 	`
-// 	document.getElementById("top-countries").innerHTML = HTML
-// }
+const fillHtmlCountries = (firstCountry, secondCountry, thirdCountry, fourthCountry, userCountry) => {
+	HTML = `
+		<p class="countries">1- ${firstCountry.name}: <span style="color: #F47027">${firstCountry.latest_data.confirmed}</span> Cases</p>
+		<p class="countries">2- ${secondCountry.name}: <span style="color: #F47027">${secondCountry.latest_data.confirmed}</span> Cases</p>
+		<p class="countries">3- ${thirdCountry.name}: <span style="color: #F47027">${thirdCountry.latest_data.confirmed}</span> Cases</p>
+		<p class="countries">4- ${fourthCountry.name}: <span style="color: #F47027">${fourthCountry.latest_data.confirmed}</span> Cases</p>
+		<p class="countries">${userCountry[0]}- <span id="user-country">${userCountry[1].name}</span>: <span style="color: #F47027">${userCountry[1].latest_data.confirmed}</span> Cases</p>
+		<a class="Map-link" href="#">More Info</a>
+	`
+	document.getElementById("top-countries").innerHTML = HTML
+}
 
 

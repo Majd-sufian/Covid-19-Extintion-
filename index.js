@@ -16,7 +16,6 @@ const getUserCountry = () => {
 	})
 }	 
 
-
 const userCountry = (user) => {
 	document.getElementById("user-country").innerHTML = user
 }
@@ -79,7 +78,6 @@ const fillHtmlCountries = (countries) => {
 	const foundCountry = countries.find(country => country.name === userLocationCountry)
 	const userCountryPostion = countries.indexOf(foundCountry)
 	var userCountry = [userCountryPostion, foundCountry]
-	console.log(userCountry)
 	let HTML = ''
 	if (firstCountry && secondCountry && thirdCountry && fourthCountry){
 		HTML += `
@@ -90,14 +88,13 @@ const fillHtmlCountries = (countries) => {
 		`
 	} if (typeof userCountry[1] === 'undefined') {
 		console.log(userCountry)
-		console.log("not working")
 	} else {
 		HTML += `
 			<p class="countries">${userCountry[0]}- <span id="user-country">${userCountry[1].name}</span>: <span style="color: #F47027">${userCountry[1].latest_data.confirmed}</span> Cases</p>
 		`
 	}
 	HTML += `
-		<a class="Map-link" href="#">More Info</a>
+		<a class="Map-link" href="https://majd-sufian.github.io/Covid-19-MAP" target="_blank">More Info</a>
 	`
 	document.getElementById("top-countries").innerHTML = HTML
 }

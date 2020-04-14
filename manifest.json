@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Traversy Launcher",
-  "description": "Quick launch Traversy Media",
+  "name": "Covid-19 TRACKER",
+  "description": "Covid-19 TRACKER",
   "version": "1.0.0",
   "icons": { "128": "icons8-coronavirus-64.png" },
   "browser_action": {

@@ -65,6 +65,12 @@ function sortCountriesByCasesNumber(countries){
 	    countries[max_location] = countries[j]
 	    countries[j] = max_obj
 		}
+	var countries
+ 
+	fillHtmlCountries(countries)
+}
+
+const fillHtmlCountries = (countries) => {
 	var firstCountry = countries[0]
 	var secondCountry = countries[1]
 	var thirdCountry = countries[2]
@@ -73,17 +79,24 @@ function sortCountriesByCasesNumber(countries){
 	const foundCountry = countries.find(country => country.name === userLocationCountry)
 	const userCountryPostion = countries.indexOf(foundCountry)
 	var userCountry = [userCountryPostion, foundCountry]
- 
-	fillHtmlCountries(firstCountry, secondCountry, thirdCountry, fourthCountry, userCountry)
-}
-
-const fillHtmlCountries = (firstCountry, secondCountry, thirdCountry, fourthCountry, userCountry) => {
-	HTML = `
-		<p class="countries">1- ${firstCountry.name}: <span style="color: #F47027">${firstCountry.latest_data.confirmed}</span> Cases</p>
-		<p class="countries">2- ${secondCountry.name}: <span style="color: #F47027">${secondCountry.latest_data.confirmed}</span> Cases</p>
-		<p class="countries">3- ${thirdCountry.name}: <span style="color: #F47027">${thirdCountry.latest_data.confirmed}</span> Cases</p>
-		<p class="countries">4- ${fourthCountry.name}: <span style="color: #F47027">${fourthCountry.latest_data.confirmed}</span> Cases</p>
-		<p class="countries">${userCountry[0]}- <span id="user-country">${userCountry[1].name}</span>: <span style="color: #F47027">${userCountry[1].latest_data.confirmed}</span> Cases</p>
+	console.log(userCountry)
+	let HTML = ''
+	if (firstCountry && secondCountry && thirdCountry && fourthCountry){
+		HTML += `
+			<p class="countries">1- ${firstCountry.name}: <span style="color: #F47027">${firstCountry.latest_data.confirmed}</span> Cases</p>
+			<p class="countries">2- ${secondCountry.name}: <span style="color: #F47027">${secondCountry.latest_data.confirmed}</span> Cases</p>
+			<p class="countries">3- ${thirdCountry.name}: <span style="color: #F47027">${thirdCountry.latest_data.confirmed}</span> Cases</p>
+			<p class="countries">4- ${fourthCountry.name}: <span style="color: #F47027">${fourthCountry.latest_data.confirmed}</span> Cases</p>
+		`
+	} if (typeof userCountry[1] === 'undefined') {
+		console.log(userCountry)
+		console.log("not working")
+	} else {
+		HTML += `
+			<p class="countries">${userCountry[0]}- <span id="user-country">${userCountry[1].name}</span>: <span style="color: #F47027">${userCountry[1].latest_data.confirmed}</span> Cases</p>
+		`
+	}
+	HTML += `
 		<a class="Map-link" href="#">More Info</a>
 	`
 	document.getElementById("top-countries").innerHTML = HTML

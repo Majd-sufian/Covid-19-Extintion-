@@ -15,7 +15,6 @@ fetch("https://corona.lmao.ninja/all", requestOptions)
 
 const globalCases = (result) => {
 	let cases = result.cases
-	let deaths = result.deaths
 	var number = document.getElementById("cases")
 	number.innerHTML = cases
 }
@@ -52,27 +51,17 @@ function sortCountriesByCasesNumber(country){
 	var thirdCountry = country[2].latest_data.confirmed
 	var fourthCountry = country[3].latest_data.confirmed
 
-	fillHtmlCountries(firstCountry, secondCountry, thirdCountry, fourthCountry)
+	// fillHtmlCountries(firstCountry, secondCountry, thirdCountry, fourthCountry)
 }
 
-const fillHtmlCountries = (firstCountry, secondCountry, thirdCountry, fourthCountry) => {
-	HTML = `
-		<p class="countries">1- USA: <span style="color: #F47027">${firstCountry}</span> Cases</p>
-		<p class="countries">2- Spain: <span style="color: #F47027">${secondCountry}</span> Cases</p>
-		<p class="countries">3- Italy: <span style="color: #F47027">${thirdCountry}</span> Cases</p>
-		<p class="countries">43- France: <span style="color: #F47027">${fourthCountry}</span> Cases</p>
-		<p class="countries">43- Germany: <span style="color: #F47027">00000</span> Cases</p>
-		<a class="Map-link" href="https://majd-sufian.github.io/Covid-19-MAP">More Info</a>
-	`
-	document.getElementById("top-countries").innerHTML = HTML
-}
+// const fillHtmlCountries = (firstCountry, secondCountry, thirdCountry, fourthCountry) => {
+// 	HTML = `
+// 		<p class="countries">1- USA: <span style="color: #F47027">${firstCountry}</span> Cases</p>
+// 		<p class="countries">2- Spain: <span style="color: #F47027">${secondCountry}</span> Cases</p>
+// 		<p class="countries">3- Italy: <span style="color: #F47027">${thirdCountry}</span> Cases</p>
+// 		<p class="countries">43- France: <span style="color: #F47027">${fourthCountry}</span> Cases</p>
+// 	`
+// 	document.getElementById("top-countries").innerHTML = HTML
+// }
 
 
-fetch('https://extreme-ip-lookup.com/json/')
-.then( res => res.json())
-.then(response => {
-    console.log("Country: ", response.country);
- })
- .catch((data, status) => {
-    console.log('Request failed');
- })

@@ -51,20 +51,35 @@ function sortCountriesByCasesNumber(country){
 	var secondCountry = country[1].latest_data.confirmed
 	var thirdCountry = country[2].latest_data.confirmed
 	var fourthCountry = country[3].latest_data.confirmed
-	console.log(firstCountry)
 
-	// fillHtmlCountries(firstCountry, secondCountry, thirdCountry, fourthCountry)
+	fillHtmlCountries(firstCountry, secondCountry, thirdCountry, fourthCountry)
 }
 
 const fillHtmlCountries = (firstCountry, secondCountry, thirdCountry, fourthCountry) => {
 	HTML = `
-		<p class="countries">1- USA: <span style="color: #F47027">${}</span> Cases</p>
-		<p class="countries">2- Spain: <span style="color: #F47027">${}</span> Cases</p>
-		<p class="countries">3- Italy: <span style="color: #F47027">${}</span> Cases</p>
-		<p class="countries">43- France: <span style="color: #F47027">${}</span> Cases</p>
-		<p class="countries">43- Germany: <span style="color: #F47027">${}</span> Cases</p>
+		<p class="countries">1- USA: <span style="color: #F47027">${firstCountry}</span> Cases</p>
+		<p class="countries">2- Spain: <span style="color: #F47027">${secondCountry}</span> Cases</p>
+		<p class="countries">3- Italy: <span style="color: #F47027">${thirdCountry}</span> Cases</p>
+		<p class="countries">43- France: <span style="color: #F47027">${fourthCountry}</span> Cases</p>
+		<p class="countries">43- Germany: <span style="color: #F47027">00000</span> Cases</p>
 		<a class="Map-link" href="https://majd-sufian.github.io/Covid-19-MAP">More Info</a>
 	`
-
-	document.getElementsByClassName('modal-icons').innerHTML = HTML
+	document.getElementById("top-countries").innerHTML = HTML
 }
+
+
+function ipLookUp () {
+  $.ajax('http://ip-api.com/json')
+  .then(
+      function success(response) {
+          console.log('User\'s Location Data is ', response);
+          console.log('User\'s Country', response.country);
+      },
+
+      function fail(data, status) {
+          console.log('Request failed.  Returned status of',
+                      status);
+      }
+  );
+}
+ipLookUp()

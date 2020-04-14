@@ -47,7 +47,16 @@ img {
 .Map-link{
   position: relative;
   left: 81%;
-  color: #007bff;
+}
+
+a:link, a:visited {
+  color: #F47027;
+  position: relative;
+  bottom: 12px;
+}
+
+a:link, a:visited:hover {
+  color: #F47027;
 }
 
 .countries {

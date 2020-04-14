@@ -3,8 +3,6 @@ window.onload = () => {
   	getUserCountry()
 }
 
-
-
 const getUserCountry = () => {
 	fetch('https://extreme-ip-lookup.com/json/')
 	.then( res => res.json())
@@ -98,5 +96,3 @@ const fillHtmlCountries = (countries) => {
 	`
 	document.getElementById("top-countries").innerHTML = HTML
 }
-
-

@@ -8,7 +8,6 @@ const getUserCountry = () => {
 	.then( res => res.json())
 	.then(response => {
 		userCountry(response.country);
-		// console.log(response.country);
 
 	 })
 	 .catch((data, status) => {

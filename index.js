@@ -4,10 +4,12 @@ window.onload = () => {
 }
 
 const getUserCountry = () => {
-	fetch('https://extreme-ip-lookup.com/json/')
+	fetch('http://ip-api.com/json/')
 	.then( res => res.json())
 	.then(response => {
 		userCountry(response.country);
+		// console.log(response.country);
+
 	 })
 	 .catch((data, status) => {
 	    console.log('Request failed');
@@ -88,7 +90,7 @@ const fillHtmlCountries = (countries) => {
 		console.log(userCountry)
 	} else {
 		HTML += `
-			<p class="countries">${userCountry[0]}- <span id="user-country">${userCountry[1].name}</span>: <span style="color: #F47027">${userCountry[1].latest_data.confirmed}</span> Cases</p>
+			<p class="countries">${userCountry[0]+1}- <span id="user-country">${userCountry[1].name}</span>: <span style="color: #F47027">${userCountry[1].latest_data.confirmed}</span> Cases</p>
 		`
 	}
 	HTML += `
